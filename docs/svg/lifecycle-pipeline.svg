@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 320" font-family="system-ui, -apple-system, sans-serif" font-size="13">
+  <defs>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7FB3D3"/>
+    </marker>
+  </defs>
+
+  <rect width="1060" height="320" fill="#FAFCFF" rx="12"/>
+  <text x="530" y="30" text-anchor="middle" font-size="18" font-weight="700" fill="#1B3A4B">Software Lifecycle Pipeline</text>
+
+  <!-- Input -->
+  <rect x="10" y="110" width="100" height="80" rx="10" fill="#E8F4FD" stroke="#7FB3D3" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="60" y="140" text-anchor="middle" font-size="18">📝</text>
+  <text x="60" y="158" text-anchor="middle" font-weight="600" font-size="11" fill="#1B3A4B">Project</text>
+  <text x="60" y="172" text-anchor="middle" font-size="10" fill="#7FB3D3">Description</text>
+  <line x1="110" y1="150" x2="135" y2="150" stroke="#7FB3D3" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Phase 1 -->
+  <rect x="140" y="85" width="120" height="130" rx="10" fill="#DCEEFB" stroke="#7FB3D3" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="200" y="108" text-anchor="middle" font-size="10" font-weight="700" fill="#5A8BA8">PHASE 1</text>
+  <text x="200" y="126" text-anchor="middle" font-size="16">🔍</text>
+  <text x="200" y="145" text-anchor="middle" font-weight="700" fill="#1B3A4B">Requirements</text>
+  <text x="200" y="162" text-anchor="middle" font-size="10" fill="#7FB3D3">Extract &amp; Analyze</text>
+  <text x="200" y="178" text-anchor="middle" font-size="9" fill="#999">REQ-001..N</text>
+  <text x="200" y="191" text-anchor="middle" font-size="9" fill="#999">UC-001..N</text>
+  <line x1="260" y1="150" x2="285" y2="150" stroke="#7FB3D3" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Phase 2 -->
+  <rect x="290" y="85" width="120" height="130" rx="10" fill="#FFF8E7" stroke="#E6C97A" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="350" y="108" text-anchor="middle" font-size="10" font-weight="700" fill="#8B7A3A">PHASE 2</text>
+  <text x="350" y="126" text-anchor="middle" font-size="16">👥</text>
+  <text x="350" y="145" text-anchor="middle" font-weight="700" fill="#1B3A4B">Roles</text>
+  <text x="350" y="162" text-anchor="middle" font-size="10" fill="#E6C97A">Team Composition</text>
+  <text x="350" y="178" text-anchor="middle" font-size="9" fill="#999">RACI Matrix</text>
+  <text x="350" y="191" text-anchor="middle" font-size="9" fill="#999">Skill Mapping</text>
+  <line x1="410" y1="150" x2="435" y2="150" stroke="#7FB3D3" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Phase 3 -->
+  <rect x="440" y="85" width="120" height="130" rx="10" fill="#E8FFE8" stroke="#90C695" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="500" y="108" text-anchor="middle" font-size="10" font-weight="700" fill="#4A7A4E">PHASE 3</text>
+  <text x="500" y="126" text-anchor="middle" font-size="16">🏗️</text>
+  <text x="500" y="145" text-anchor="middle" font-weight="700" fill="#1B3A4B">Architecture</text>
+  <text x="500" y="162" text-anchor="middle" font-size="10" fill="#90C695">Design &amp; Review</text>
+  <text x="500" y="178" text-anchor="middle" font-size="9" fill="#999">Components, ADRs</text>
+  <text x="500" y="191" text-anchor="middle" font-size="9" fill="#999">Mermaid Diagrams</text>
+  <line x1="560" y1="150" x2="585" y2="150" stroke="#7FB3D3" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Phase 4 -->
+  <rect x="590" y="85" width="120" height="130" rx="10" fill="#FFF0F5" stroke="#D4A0B0" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="650" y="108" text-anchor="middle" font-size="10" font-weight="700" fill="#8B5A6A">PHASE 4</text>
+  <text x="650" y="126" text-anchor="middle" font-size="16">⚙️</text>
+  <text x="650" y="145" text-anchor="middle" font-weight="700" fill="#1B3A4B">Development</text>
+  <text x="650" y="162" text-anchor="middle" font-size="10" fill="#D4A0B0">Task Breakdown</text>
+  <text x="650" y="178" text-anchor="middle" font-size="9" fill="#999">TASK-001..N</text>
+  <text x="650" y="191" text-anchor="middle" font-size="9" fill="#999">Code Scaffold</text>
+  <line x1="710" y1="150" x2="735" y2="150" stroke="#7FB3D3" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Phase 5 -->
+  <rect x="740" y="85" width="120" height="130" rx="10" fill="#F5F0FF" stroke="#B0A0D4" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="800" y="108" text-anchor="middle" font-size="10" font-weight="700" fill="#6A5A8B">PHASE 5</text>
+  <text x="800" y="126" text-anchor="middle" font-size="16">🚀</text>
+  <text x="800" y="145" text-anchor="middle" font-weight="700" fill="#1B3A4B">Deployment</text>
+  <text x="800" y="162" text-anchor="middle" font-size="10" fill="#B0A0D4">CI/CD &amp; IaC</text>
+  <text x="800" y="178" text-anchor="middle" font-size="9" fill="#999">Environments</text>
+  <text x="800" y="191" text-anchor="middle" font-size="9" fill="#999">Pipeline Steps</text>
+  <line x1="860" y1="150" x2="885" y2="150" stroke="#7FB3D3" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Phase 6 -->
+  <rect x="890" y="85" width="120" height="130" rx="10" fill="#FFFAF0" stroke="#D4B896" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="950" y="108" text-anchor="middle" font-size="10" font-weight="700" fill="#8B7A5A">PHASE 6</text>
+  <text x="950" y="126" text-anchor="middle" font-size="16">📅</text>
+  <text x="950" y="145" text-anchor="middle" font-weight="700" fill="#1B3A4B">Schedule</text>
+  <text x="950" y="162" text-anchor="middle" font-size="10" fill="#D4B896">Plan &amp; Estimate</text>
+  <text x="950" y="178" text-anchor="middle" font-size="9" fill="#999">Milestones</text>
+  <text x="950" y="191" text-anchor="middle" font-size="9" fill="#999">Sprints</text>
+
+  <!-- Output arrow -->
+  <line x1="950" y1="215" x2="950" y2="245" stroke="#7FB3D3" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="885" y="250" width="130" height="50" rx="10" fill="#E8F4FD" stroke="#7FB3D3" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="950" y="272" text-anchor="middle" font-size="16">📊</text>
+  <text x="950" y="290" text-anchor="middle" font-weight="600" font-size="11" fill="#1B3A4B">Reports &amp; Exports</text>
+
+  <text x="530" y="310" text-anchor="middle" font-size="10" fill="#999">Rational AI v0.1.0 — Lifecycle Pipeline</text>
+</svg>

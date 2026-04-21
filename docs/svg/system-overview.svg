@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 820" font-family="system-ui, -apple-system, sans-serif" font-size="13">
+  <defs>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7FB3D3"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="820" fill="#FAFCFF" rx="12"/>
+
+  <!-- Title -->
+  <text x="480" y="35" text-anchor="middle" font-size="20" font-weight="700" fill="#1B3A4B">Rational AI — System Overview</text>
+
+  <!-- User Interface Layer -->
+  <rect x="320" y="55" width="320" height="75" rx="10" fill="#E8F4FD" stroke="#7FB3D3" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="480" y="72" text-anchor="middle" font-size="11" font-weight="600" fill="#5A8BA8">👤 USER INTERFACE</text>
+  <rect x="340" y="82" width="120" height="38" rx="6" fill="#FFFFFF" stroke="#7FB3D3" stroke-width="1"/>
+  <text x="400" y="100" text-anchor="middle" font-weight="600" fill="#1B3A4B">CLI</text>
+  <text x="400" y="114" text-anchor="middle" font-size="10" fill="#7FB3D3">Typer</text>
+  <rect x="500" y="82" width="120" height="38" rx="6" fill="#FFFFFF" stroke="#7FB3D3" stroke-width="1"/>
+  <text x="560" y="100" text-anchor="middle" font-weight="600" fill="#1B3A4B">VS Code Tasks</text>
+  <text x="560" y="114" text-anchor="middle" font-size="10" fill="#7FB3D3">tasks.json</text>
+
+  <!-- Arrow down -->
+  <line x1="480" y1="130" x2="480" y2="155" stroke="#7FB3D3" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Orchestration Layer -->
+  <rect x="280" y="160" width="400" height="70" rx="10" fill="#FFF8E7" stroke="#E6C97A" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="480" y="177" text-anchor="middle" font-size="11" font-weight="600" fill="#8B7A3A">🎯 ORCHESTRATION</text>
+  <rect x="310" y="187" width="160" height="34" rx="6" fill="#FFFFFF" stroke="#E6C97A" stroke-width="1"/>
+  <text x="390" y="208" text-anchor="middle" font-weight="600" fill="#1B3A4B">ProjectOrchestrator</text>
+  <rect x="500" y="187" width="160" height="34" rx="6" fill="#FFFFFF" stroke="#E6C97A" stroke-width="1"/>
+  <text x="580" y="208" text-anchor="middle" font-weight="600" fill="#1B3A4B">Config Manager</text>
+
+  <!-- Arrow down -->
+  <line x1="480" y1="230" x2="480" y2="255" stroke="#7FB3D3" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- AI Agent Layer -->
+  <rect x="80" y="260" width="800" height="100" rx="10" fill="#F0FFF0" stroke="#90C695" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="480" y="278" text-anchor="middle" font-size="11" font-weight="600" fill="#4A7A4E">🤖 AI AGENTS</text>
+
+  <rect x="100" y="290" width="110" height="56" rx="6" fill="#DCEEFB" stroke="#7FB3D3" stroke-width="1"/>
+  <text x="155" y="312" text-anchor="middle" font-weight="600" fill="#1B3A4B">Requirements</text>
+  <text x="155" y="326" text-anchor="middle" font-size="10" fill="#7FB3D3">Agent</text>
+
+  <rect x="225" y="290" width="110" height="56" rx="6" fill="#FFF8E7" stroke="#E6C97A" stroke-width="1"/>
+  <text x="280" y="312" text-anchor="middle" font-weight="600" fill="#1B3A4B">Roles</text>
+  <text x="280" y="326" text-anchor="middle" font-size="10" fill="#E6C97A">Agent</text>
+
+  <rect x="350" y="290" width="110" height="56" rx="6" fill="#E8FFE8" stroke="#90C695" stroke-width="1"/>
+  <text x="405" y="312" text-anchor="middle" font-weight="600" fill="#1B3A4B">Architecture</text>
+  <text x="405" y="326" text-anchor="middle" font-size="10" fill="#90C695">Agent</text>
+
+  <rect x="475" y="290" width="110" height="56" rx="6" fill="#FFF0F5" stroke="#D4A0B0" stroke-width="1"/>
+  <text x="530" y="312" text-anchor="middle" font-weight="600" fill="#1B3A4B">Development</text>
+  <text x="530" y="326" text-anchor="middle" font-size="10" fill="#D4A0B0">Agent</text>
+
+  <rect x="600" y="290" width="110" height="56" rx="6" fill="#F5F0FF" stroke="#B0A0D4" stroke-width="1"/>
+  <text x="655" y="312" text-anchor="middle" font-weight="600" fill="#1B3A4B">Deployment</text>
+  <text x="655" y="326" text-anchor="middle" font-size="10" fill="#B0A0D4">Agent</text>
+
+  <rect x="725" y="290" width="110" height="56" rx="6" fill="#FFFAF0" stroke="#D4B896" stroke-width="1"/>
+  <text x="780" y="312" text-anchor="middle" font-weight="600" fill="#1B3A4B">Schedule</text>
+  <text x="780" y="326" text-anchor="middle" font-size="10" fill="#D4B896">Agent</text>
+
+  <!-- Arrow down -->
+  <line x1="480" y1="360" x2="480" y2="390" stroke="#7FB3D3" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- AI Provider Layer -->
+  <rect x="260" y="395" width="440" height="70" rx="10" fill="#FFF0F5" stroke="#D4A0B0" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="480" y="412" text-anchor="middle" font-size="11" font-weight="600" fill="#8B5A6A">🧠 AI PROVIDER</text>
+  <rect x="290" y="422" width="170" height="34" rx="6" fill="#FFFFFF" stroke="#D4A0B0" stroke-width="1"/>
+  <text x="375" y="443" text-anchor="middle" font-weight="600" fill="#1B3A4B">AIProvider</text>
+  <rect x="490" y="422" width="170" height="34" rx="6" fill="#FFFFFF" stroke="#D4A0B0" stroke-width="1"/>
+  <text x="575" y="443" text-anchor="middle" font-weight="600" fill="#1B3A4B">Prompt Templates</text>
+
+  <!-- Arrow down -->
+  <line x1="480" y1="465" x2="480" y2="495" stroke="#7FB3D3" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- LLM Backends -->
+  <rect x="180" y="500" width="600" height="75" rx="10" fill="#F5F0FF" stroke="#B0A0D4" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="480" y="517" text-anchor="middle" font-size="11" font-weight="600" fill="#6A5A8B">☁️ LLM BACKENDS</text>
+  <rect x="210" y="527" width="150" height="38" rx="6" fill="#FFFFFF" stroke="#B0A0D4" stroke-width="1"/>
+  <text x="285" y="545" text-anchor="middle" font-weight="600" fill="#1B3A4B">OpenAI</text>
+  <text x="285" y="559" text-anchor="middle" font-size="10" fill="#B0A0D4">GPT-4o</text>
+  <rect x="400" y="527" width="150" height="38" rx="6" fill="#FFFFFF" stroke="#B0A0D4" stroke-width="1"/>
+  <text x="475" y="545" text-anchor="middle" font-weight="600" fill="#1B3A4B">Anthropic</text>
+  <text x="475" y="559" text-anchor="middle" font-size="10" fill="#B0A0D4">Claude</text>
+  <rect x="590" y="527" width="150" height="38" rx="6" fill="#FFFFFF" stroke="#B0A0D4" stroke-width="1"/>
+  <text x="665" y="545" text-anchor="middle" font-weight="600" fill="#1B3A4B">Ollama</text>
+  <text x="665" y="559" text-anchor="middle" font-size="10" fill="#B0A0D4">Local LLMs</text>
+
+  <!-- Data & Persistence -->
+  <rect x="60" y="610" width="380" height="75" rx="10" fill="#FFFAF0" stroke="#D4B896" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="250" y="627" text-anchor="middle" font-size="11" font-weight="600" fill="#8B7A5A">💾 DATA &amp; PERSISTENCE</text>
+  <rect x="80" y="637" width="150" height="38" rx="6" fill="#FFFFFF" stroke="#D4B896" stroke-width="1"/>
+  <text x="155" y="655" text-anchor="middle" font-weight="600" fill="#1B3A4B">Pydantic Models</text>
+  <text x="155" y="669" text-anchor="middle" font-size="10" fill="#D4B896">schema.py</text>
+  <rect x="260" y="637" width="150" height="38" rx="6" fill="#FFFFFF" stroke="#D4B896" stroke-width="1"/>
+  <text x="335" y="655" text-anchor="middle" font-weight="600" fill="#1B3A4B">YAML Store</text>
+  <text x="335" y="669" text-anchor="middle" font-size="10" fill="#D4B896">.rai/ directory</text>
+
+  <!-- Export Layer -->
+  <rect x="500" y="610" width="400" height="75" rx="10" fill="#F0FFFF" stroke="#96C8D4" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="700" y="627" text-anchor="middle" font-size="11" font-weight="600" fill="#5A8B8B">📄 EXPORT</text>
+  <rect x="520" y="637" width="100" height="38" rx="6" fill="#FFFFFF" stroke="#96C8D4" stroke-width="1"/>
+  <text x="570" y="660" text-anchor="middle" font-weight="600" fill="#1B3A4B">Markdown</text>
+  <rect x="640" y="637" width="100" height="38" rx="6" fill="#FFFFFF" stroke="#96C8D4" stroke-width="1"/>
+  <text x="690" y="660" text-anchor="middle" font-weight="600" fill="#1B3A4B">HTML</text>
+  <rect x="760" y="637" width="100" height="38" rx="6" fill="#FFFFFF" stroke="#96C8D4" stroke-width="1"/>
+  <text x="810" y="660" text-anchor="middle" font-weight="600" fill="#1B3A4B">Mermaid</text>
+
+  <!-- Connecting lines from orchestrator down to data/export -->
+  <line x1="350" y1="230" x2="250" y2="610" stroke="#D4B896" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="610" y1="230" x2="700" y2="610" stroke="#96C8D4" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+
+  <!-- Footer -->
+  <text x="480" y="808" text-anchor="middle" font-size="10" fill="#999">Rational AI v0.1.0 — System Overview</text>
+</svg>

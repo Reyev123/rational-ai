@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 380" font-family="system-ui, -apple-system, sans-serif" font-size="12">
+  <defs>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <rect width="820" height="380" fill="#FAFCFF" rx="12"/>
+  <text x="410" y="28" text-anchor="middle" font-size="18" font-weight="700" fill="#1B3A4B">IBM Rational Rose → Rational AI</text>
+
+  <!-- IBM Rational column -->
+  <rect x="30" y="50" width="340" height="300" rx="10" fill="#FFF0F0" stroke="#D4A0A0" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="200" y="72" text-anchor="middle" font-weight="700" fill="#8B5050">IBM Rational Rose Suite</text>
+  <text x="200" y="86" text-anchor="middle" font-size="9" fill="#D4A0A0">Manual · Heavyweight · Per-seat licensing</text>
+
+  <rect x="50" y="100" width="300" height="32" rx="6" fill="#FFE8E8" stroke="#D4A0A0" stroke-width="1"/>
+  <text x="200" y="120" text-anchor="middle" fill="#8B5050">RequisitePro — Manual entry</text>
+
+  <rect x="50" y="142" width="300" height="32" rx="6" fill="#FFE8E8" stroke="#D4A0A0" stroke-width="1"/>
+  <text x="200" y="162" text-anchor="middle" fill="#8B5050">ClearQuest — Separate tool</text>
+
+  <rect x="50" y="184" width="300" height="32" rx="6" fill="#FFE8E8" stroke="#D4A0A0" stroke-width="1"/>
+  <text x="200" y="204" text-anchor="middle" fill="#8B5050">Rose Designer / XDE — Drag &amp; drop UML</text>
+
+  <rect x="50" y="226" width="300" height="32" rx="6" fill="#FFE8E8" stroke="#D4A0A0" stroke-width="1"/>
+  <text x="200" y="246" text-anchor="middle" fill="#8B5050">Rose Code Gen — Template stubs</text>
+
+  <rect x="50" y="268" width="300" height="32" rx="6" fill="#FFE8E8" stroke="#D4A0A0" stroke-width="1"/>
+  <text x="200" y="288" text-anchor="middle" fill="#8B5050">Build Forge — Build automation</text>
+
+  <rect x="50" y="310" width="300" height="32" rx="6" fill="#FFE8E8" stroke="#D4A0A0" stroke-width="1"/>
+  <text x="200" y="330" text-anchor="middle" fill="#8B5050">Rational Plan — Manual Gantt</text>
+
+  <!-- Arrows -->
+  <text x="410" y="120" text-anchor="middle" font-size="16" fill="#90C695">→</text>
+  <text x="410" y="162" text-anchor="middle" font-size="16" fill="#90C695">→</text>
+  <text x="410" y="204" text-anchor="middle" font-size="16" fill="#90C695">→</text>
+  <text x="410" y="246" text-anchor="middle" font-size="16" fill="#90C695">→</text>
+  <text x="410" y="288" text-anchor="middle" font-size="16" fill="#90C695">→</text>
+  <text x="410" y="330" text-anchor="middle" font-size="16" fill="#90C695">→</text>
+
+  <!-- Rational AI column -->
+  <rect x="450" y="50" width="340" height="300" rx="10" fill="#F0FFF0" stroke="#90C695" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="620" y="72" text-anchor="middle" font-weight="700" fill="#4A7A4E">Rational AI</text>
+  <text x="620" y="86" text-anchor="middle" font-size="9" fill="#90C695">AI-Powered · Open Source · Local or Cloud LLM</text>
+
+  <rect x="470" y="100" width="300" height="32" rx="6" fill="#E8FFE8" stroke="#90C695" stroke-width="1"/>
+  <text x="620" y="120" text-anchor="middle" fill="#4A7A4E">RequirementsAgent — AI extraction</text>
+
+  <rect x="470" y="142" width="300" height="32" rx="6" fill="#E8FFE8" stroke="#90C695" stroke-width="1"/>
+  <text x="620" y="162" text-anchor="middle" fill="#4A7A4E">RolesAgent — AI team planning</text>
+
+  <rect x="470" y="184" width="300" height="32" rx="6" fill="#E8FFE8" stroke="#90C695" stroke-width="1"/>
+  <text x="620" y="204" text-anchor="middle" fill="#4A7A4E">ArchitectureAgent — AI + Mermaid</text>
+
+  <rect x="470" y="226" width="300" height="32" rx="6" fill="#E8FFE8" stroke="#90C695" stroke-width="1"/>
+  <text x="620" y="246" text-anchor="middle" fill="#4A7A4E">DevelopmentAgent — AI scaffolding</text>
+
+  <rect x="470" y="268" width="300" height="32" rx="6" fill="#E8FFE8" stroke="#90C695" stroke-width="1"/>
+  <text x="620" y="288" text-anchor="middle" fill="#4A7A4E">DeploymentAgent — AI CI/CD + IaC</text>
+
+  <rect x="470" y="310" width="300" height="32" rx="6" fill="#E8FFE8" stroke="#90C695" stroke-width="1"/>
+  <text x="620" y="330" text-anchor="middle" fill="#4A7A4E">ScheduleAgent — AI sprint planning</text>
+
+  <text x="410" y="372" text-anchor="middle" font-size="10" fill="#999">Rational AI v0.1.0 — Rational Rose Mapping</text>
+</svg>

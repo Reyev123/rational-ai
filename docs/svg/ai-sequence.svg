@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 480" font-family="system-ui, -apple-system, sans-serif" font-size="12">
+  <defs>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7FB3D3"/>
+    </marker>
+    <marker id="arrowReturn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#90C695"/>
+    </marker>
+  </defs>
+
+  <rect width="860" height="480" fill="#FAFCFF" rx="12"/>
+  <text x="430" y="28" text-anchor="middle" font-size="18" font-weight="700" fill="#1B3A4B">AI Interaction Sequence</text>
+
+  <!-- Lifeline headers -->
+  <rect x="30" y="45" width="100" height="35" rx="6" fill="#E8F4FD" stroke="#7FB3D3" stroke-width="1.5"/>
+  <text x="80" y="67" text-anchor="middle" font-weight="700" fill="#1B3A4B">CLI</text>
+
+  <rect x="200" y="45" width="120" height="35" rx="6" fill="#FFF8E7" stroke="#E6C97A" stroke-width="1.5"/>
+  <text x="260" y="67" text-anchor="middle" font-weight="700" fill="#1B3A4B">Orchestrator</text>
+
+  <rect x="390" y="45" width="100" height="35" rx="6" fill="#F0FFF0" stroke="#90C695" stroke-width="1.5"/>
+  <text x="440" y="67" text-anchor="middle" font-weight="700" fill="#1B3A4B">Agent</text>
+
+  <rect x="560" y="45" width="100" height="35" rx="6" fill="#FFF0F5" stroke="#D4A0B0" stroke-width="1.5"/>
+  <text x="610" y="67" text-anchor="middle" font-weight="700" fill="#1B3A4B">AIProvider</text>
+
+  <rect x="730" y="45" width="100" height="35" rx="6" fill="#F5F0FF" stroke="#B0A0D4" stroke-width="1.5"/>
+  <text x="780" y="67" text-anchor="middle" font-weight="700" fill="#1B3A4B">LLM</text>
+
+  <!-- Lifelines -->
+  <line x1="80" y1="80" x2="80" y2="450" stroke="#7FB3D3" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="260" y1="80" x2="260" y2="450" stroke="#E6C97A" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="440" y1="80" x2="440" y2="450" stroke="#90C695" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="610" y1="80" x2="610" y2="450" stroke="#D4A0B0" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="780" y1="80" x2="780" y2="450" stroke="#B0A0D4" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Activation boxes -->
+  <rect x="75" y="100" width="10" height="50" fill="#E8F4FD" stroke="#7FB3D3" stroke-width="0.5"/>
+  <rect x="255" y="110" width="10" height="310" fill="#FFF8E7" stroke="#E6C97A" stroke-width="0.5"/>
+  <rect x="435" y="145" width="10" height="230" fill="#F0FFF0" stroke="#90C695" stroke-width="0.5"/>
+  <rect x="605" y="195" width="10" height="130" fill="#FFF0F5" stroke="#D4A0B0" stroke-width="0.5"/>
+  <rect x="775" y="230" width="10" height="60" fill="#F5F0FF" stroke="#B0A0D4" stroke-width="0.5"/>
+
+  <!-- Message 1: CLI -> Orchestrator -->
+  <line x1="85" y1="115" x2="255" y2="115" stroke="#7FB3D3" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="170" y="110" text-anchor="middle" font-size="11" fill="#1B3A4B">rai requirements</text>
+
+  <!-- Message 2: Orchestrator -> Orchestrator -->
+  <path d="M 265 135 Q 310 135 310 145 Q 310 155 265 155" fill="none" stroke="#E6C97A" stroke-width="1" marker-end="url(#arrow)"/>
+  <text x="325" y="148" font-size="10" fill="#8B7A3A">_ensure_project()</text>
+
+  <!-- Message 3: Orchestrator -> Agent -->
+  <line x1="265" y1="175" x2="435" y2="175" stroke="#90C695" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="350" y="170" text-anchor="middle" font-size="11" fill="#1B3A4B">extract_requirements(desc)</text>
+
+  <!-- Message 4: Agent -> AIProvider -->
+  <line x1="445" y1="210" x2="605" y2="210" stroke="#D4A0B0" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="525" y="205" text-anchor="middle" font-size="11" fill="#1B3A4B">chat_json(system, user)</text>
+
+  <!-- Message 5: AIProvider -> LLM -->
+  <line x1="615" y1="245" x2="775" y2="245" stroke="#B0A0D4" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="695" y="240" text-anchor="middle" font-size="10" fill="#1B3A4B">POST /chat/completions</text>
+  <rect x="620" y="250" width="155" height="20" rx="3" fill="#F5F0FF" stroke="none"/>
+  <text x="698" y="264" text-anchor="middle" font-size="9" fill="#6A5A8B">{model, messages, response_format}</text>
+
+  <!-- Message 6: LLM -> AIProvider (return) -->
+  <line x1="775" y1="285" x2="615" y2="285" stroke="#90C695" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrowReturn)"/>
+  <text x="695" y="280" text-anchor="middle" font-size="10" fill="#4A7A4E">JSON response</text>
+
+  <!-- Message 7: AIProvider -> Agent (return) -->
+  <line x1="605" y1="315" x2="445" y2="315" stroke="#90C695" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrowReturn)"/>
+  <text x="525" y="310" text-anchor="middle" font-size="10" fill="#4A7A4E">parsed dict</text>
+
+  <!-- Message 8: Agent validates -->
+  <path d="M 445 335 Q 490 335 490 345 Q 490 355 445 355" fill="none" stroke="#90C695" stroke-width="1" marker-end="url(#arrow)"/>
+  <text x="505" y="348" font-size="10" fill="#4A7A4E">Requirement(**r)</text>
+
+  <!-- Message 9: Agent -> Orchestrator (return) -->
+  <line x1="435" y1="375" x2="265" y2="375" stroke="#90C695" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrowReturn)"/>
+  <text x="350" y="370" text-anchor="middle" font-size="10" fill="#4A7A4E">RequirementsPackage</text>
+
+  <!-- Message 10: Orchestrator saves -->
+  <path d="M 265 395 Q 310 395 310 405 Q 310 415 265 415" fill="none" stroke="#E6C97A" stroke-width="1" marker-end="url(#arrow)"/>
+  <text x="325" y="408" font-size="10" fill="#8B7A3A">save to .rai/</text>
+
+  <!-- Message 11: Orchestrator -> CLI (return) -->
+  <line x1="255" y1="430" x2="85" y2="430" stroke="#90C695" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrowReturn)"/>
+  <text x="170" y="425" text-anchor="middle" font-size="10" fill="#4A7A4E">display rich table</text>
+
+  <text x="430" y="470" text-anchor="middle" font-size="10" fill="#999">Rational AI v0.1.0 — AI Interaction Sequence</text>
+</svg>

@@ -1,0 +1,17 @@
+# Example: E-Commerce Platform
+name: "ShopAI E-Commerce Platform"
+description: |
+  A modern e-commerce platform with AI-powered product recommendations,
+  real-time inventory management, multi-vendor support, and a mobile-first
+  responsive design. The system should handle 10,000 concurrent users,
+  support multiple payment gateways, and include an admin dashboard
+  for vendor management and analytics.
+
+stakeholder_notes: |
+  - Target market: B2C, initially US and EU
+  - Must comply with GDPR and PCI-DSS
+  - Integration with existing ERP system (SAP)
+  - Mobile app to follow after web launch
+  - AI recommendations should improve conversion by 15%
+  - Multi-language support (EN, DE, FR, ES)
+  - Real-time inventory sync across warehouses

@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" font-family="system-ui, -apple-system, sans-serif" font-size="11">
+  <defs>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7FB3D3"/>
+    </marker>
+  </defs>
+
+  <rect width="560" height="420" fill="#FAFCFF" rx="12"/>
+  <text x="280" y="28" text-anchor="middle" font-size="18" font-weight="700" fill="#1B3A4B">Persistence Layout</text>
+
+  <!-- .rai root -->
+  <rect x="200" y="50" width="160" height="35" rx="8" fill="#FFF8E7" stroke="#E6C97A" stroke-width="2" filter="url(#shadow)"/>
+  <text x="280" y="72" text-anchor="middle" font-weight="700" font-size="14" fill="#1B3A4B">.rai/</text>
+
+  <!-- project.yaml -->
+  <rect x="30" y="115" width="130" height="30" rx="6" fill="#DCEEFB" stroke="#7FB3D3" stroke-width="1"/>
+  <text x="95" y="135" text-anchor="middle" font-size="10" fill="#1B3A4B">📄 project.yaml</text>
+  <line x1="240" y1="85" x2="95" y2="115" stroke="#7FB3D3" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- config.yaml -->
+  <rect x="190" y="115" width="130" height="30" rx="6" fill="#DCEEFB" stroke="#7FB3D3" stroke-width="1"/>
+  <text x="255" y="135" text-anchor="middle" font-size="10" fill="#1B3A4B">⚙️ config.yaml</text>
+  <line x1="270" y1="85" x2="255" y2="115" stroke="#7FB3D3" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- Phase dirs -->
+  <rect x="30" y="175" width="130" height="30" rx="6" fill="#F0FFF0" stroke="#90C695" stroke-width="1"/>
+  <text x="95" y="195" text-anchor="middle" font-size="10" fill="#1B3A4B">📁 requirements/</text>
+  <line x1="230" y1="85" x2="95" y2="175" stroke="#90C695" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <rect x="30" y="215" width="130" height="30" rx="6" fill="#F0FFF0" stroke="#90C695" stroke-width="1"/>
+  <text x="95" y="235" text-anchor="middle" font-size="10" fill="#1B3A4B">📁 roles/</text>
+
+  <rect x="30" y="255" width="130" height="30" rx="6" fill="#F0FFF0" stroke="#90C695" stroke-width="1"/>
+  <text x="95" y="275" text-anchor="middle" font-size="10" fill="#1B3A4B">📁 architecture/</text>
+
+  <rect x="30" y="295" width="130" height="30" rx="6" fill="#F0FFF0" stroke="#90C695" stroke-width="1"/>
+  <text x="95" y="315" text-anchor="middle" font-size="10" fill="#1B3A4B">📁 development/</text>
+
+  <rect x="30" y="335" width="130" height="30" rx="6" fill="#F0FFF0" stroke="#90C695" stroke-width="1"/>
+  <text x="95" y="355" text-anchor="middle" font-size="10" fill="#1B3A4B">📁 deployment/</text>
+
+  <rect x="30" y="375" width="130" height="30" rx="6" fill="#F0FFF0" stroke="#90C695" stroke-width="1"/>
+  <text x="95" y="395" text-anchor="middle" font-size="10" fill="#1B3A4B">📁 schedule/</text>
+
+  <!-- Internal files -->
+  <rect x="200" y="175" width="140" height="25" rx="4" fill="#FFFFFF" stroke="#7FB3D3" stroke-width="0.5"/>
+  <text x="270" y="192" text-anchor="middle" font-size="9" fill="#555">requirements.yaml</text>
+  <line x1="160" y1="190" x2="200" y2="190" stroke="#7FB3D3" stroke-width="0.5" marker-end="url(#arrow)"/>
+
+  <rect x="200" y="255" width="140" height="25" rx="4" fill="#FFFFFF" stroke="#7FB3D3" stroke-width="0.5"/>
+  <text x="270" y="272" text-anchor="middle" font-size="9" fill="#555">architecture.yaml</text>
+  <line x1="160" y1="270" x2="200" y2="270" stroke="#7FB3D3" stroke-width="0.5" marker-end="url(#arrow)"/>
+
+  <rect x="370" y="255" width="100" height="25" rx="4" fill="#FFFFFF" stroke="#90C695" stroke-width="0.5"/>
+  <text x="420" y="272" text-anchor="middle" font-size="9" fill="#555">DIA-001.mmd</text>
+  <line x1="160" y1="275" x2="370" y2="270" stroke="#90C695" stroke-width="0.5" stroke-dasharray="2,2"/>
+
+  <rect x="370" y="290" width="100" height="25" rx="4" fill="#FFFFFF" stroke="#90C695" stroke-width="0.5"/>
+  <text x="420" y="307" text-anchor="middle" font-size="9" fill="#555">DIA-002.mmd</text>
+
+  <!-- Exports dir -->
+  <rect x="380" y="115" width="150" height="30" rx="6" fill="#F0FFFF" stroke="#96C8D4" stroke-width="1"/>
+  <text x="455" y="135" text-anchor="middle" font-size="10" fill="#1B3A4B">📁 exports/</text>
+  <line x1="320" y1="85" x2="455" y2="115" stroke="#96C8D4" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <rect x="380" y="160" width="150" height="22" rx="4" fill="#FFFFFF" stroke="#96C8D4" stroke-width="0.5"/>
+  <text x="455" y="175" text-anchor="middle" font-size="9" fill="#555">report.md</text>
+  <rect x="380" y="188" width="150" height="22" rx="4" fill="#FFFFFF" stroke="#96C8D4" stroke-width="0.5"/>
+  <text x="455" y="203" text-anchor="middle" font-size="9" fill="#555">report.html</text>
+  <rect x="380" y="216" width="150" height="22" rx="4" fill="#FFFFFF" stroke="#96C8D4" stroke-width="0.5"/>
+  <text x="455" y="231" text-anchor="middle" font-size="9" fill="#555">diagrams/</text>
+</svg>

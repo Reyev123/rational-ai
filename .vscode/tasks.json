@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "RAI: Init Project",
+      "type": "shell",
+      "command": "python -m rational_ai.cli init",
+      "args": ["${input:projectName}", "-d", "${input:projectDesc}"],
+      "problemMatcher": []
+    },
+    {
+      "label": "RAI: Run Full Lifecycle",
+      "type": "shell",
+      "command": "python -m rational_ai.cli full",
+      "problemMatcher": []
+    },
+    {
+      "label": "RAI: Requirements Phase",
+      "type": "shell",
+      "command": "python -m rational_ai.cli requirements",
+      "problemMatcher": []
+    },
+    {
+      "label": "RAI: Architecture Phase",
+      "type": "shell",
+      "command": "python -m rational_ai.cli architecture",
+      "problemMatcher": []
+    },
+    {
+      "label": "RAI: Export All",
+      "type": "shell",
+      "command": "python -m rational_ai.cli export all",
+      "problemMatcher": []
+    },
+    {
+      "label": "RAI: Show Status",
+      "type": "shell",
+      "command": "python -m rational_ai.cli status",
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "projectName",
+      "type": "promptString",
+      "description": "Project name"
+    },
+    {
+      "id": "projectDesc",
+      "type": "promptString",
+      "description": "Project description"
+    }
+  ]
+}
