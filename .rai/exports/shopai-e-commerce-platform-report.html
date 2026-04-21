@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ShopAI E-Commerce Platform — Rational AI Report</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        :root { --primary: #1a73e8; --bg: #f8f9fa; --card: #fff; --border: #e0e0e0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: #333; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+        h1 { color: var(--primary); margin-bottom: 0.5rem; }
+        h2 { color: var(--primary); margin: 2rem 0 1rem; border-bottom: 2px solid var(--primary); padding-bottom: 0.3rem; }
+        h3 { margin: 1.5rem 0 0.5rem; }
+        .meta { color: #666; margin-bottom: 2rem; }
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin: 1rem 0; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+        th, td { padding: 0.6rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+        th { background: var(--bg); font-weight: 600; }
+        tr:hover { background: #f0f4ff; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+        .badge-critical { background: #fce4ec; color: #c62828; }
+        .badge-high { background: #fff3e0; color: #e65100; }
+        .badge-medium { background: #e3f2fd; color: #1565c0; }
+        .badge-low { background: #e8f5e9; color: #2e7d32; }
+        .diagram { margin: 1.5rem 0; }
+        .mermaid { background: #fff; padding: 1rem; border-radius: 8px; }
+        .adr { border-left: 4px solid var(--primary); padding-left: 1rem; margin: 1rem 0; }
+        ul, ol { padding-left: 1.5rem; margin: 0.5rem 0; }
+        .phase-nav { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0; }
+        .phase-nav a { padding: 0.5rem 1rem; background: var(--primary); color: #fff; border-radius: 4px; text-decoration: none; }
+        .phase-nav a:hover { opacity: 0.85; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>ShopAI E-Commerce Platform</h1>
+    <p class="meta">A modern e-commerce platform with AI-powered product recommendations, real-time inventory management, multi-vendor support, and a mobile-first responsive design<br>Version 0.1.0 — Generated 2026-04-20 18:59</p>
+
+    <div class="phase-nav">
+        <a href="#requirements">Requirements</a>
+        <a href="#team">Team</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#development">Development</a>
+        <a href="#deployment">Deployment</a>
+        <a href="#schedule">Schedule</a>
+    </div>
+
+    <!-- REQUIREMENTS -->
+    <h2 id="requirements">1. Requirements</h2>
+    
+    <table>
+        <tr><th>ID</th><th>Title</th><th>Type</th><th>Priority</th><th>Status</th></tr>
+        
+        <tr>
+            <td>REQ-001</td><td>User Authentication & Authorization</td><td>functional</td>
+            <td><span class="badge badge-high">high</span></td>
+            <td>not_started</td>
+        </tr>
+        
+        <tr>
+            <td>REQ-002</td><td>AI Product Recommendations</td><td>functional</td>
+            <td><span class="badge badge-high">high</span></td>
+            <td>not_started</td>
+        </tr>
+        
+        <tr>
+            <td>REQ-003</td><td>Real-Time Inventory Management</td><td>functional</td>
+            <td><span class="badge badge-high">high</span></td>
+            <td>not_started</td>
+        </tr>
+        
+        <tr>
+            <td>REQ-004</td><td>Multi-Vendor Marketplace</td><td>functional</td>
+            <td><span class="badge badge-medium">medium</span></td>
+            <td>not_started</td>
+        </tr>
+        
+        <tr>
+            <td>REQ-005</td><td>Mobile-First Responsive Design</td><td>functional</td>
+            <td><span class="badge badge-high">high</span></td>
+            <td>not_started</td>
+        </tr>
+        
+        <tr>
+            <td>REQ-006</td><td>Payment Processing & Security</td><td>non_functional</td>
+            <td><span class="badge badge-high">high</span></td>
+            <td>not_started</td>
+        </tr>
+        
+        <tr>
+            <td>REQ-007</td><td>Performance & Scalability</td><td>non_functional</td>
+            <td><span class="badge badge-medium">medium</span></td>
+            <td>not_started</td>
+        </tr>
+        
+    </table>
+    
+
+    
+    <h3>Use Cases</h3>
+    
+    <div class="card">
+        <h4>UC-001: Customer Purchases Product</h4>
+        <p><strong>Actor:</strong> Customer</p>
+        
+        <p><strong>Main Flow:</strong></p>
+        <ol><li>Customer browses product catalog</li><li>AI recommends related products</li><li>Customer adds items to cart</li><li>Customer completes checkout with payment</li><li>System updates inventory in real-time</li></ol>
+        
+    </div>
+    
+    <div class="card">
+        <h4>UC-002: Vendor Manages Storefront</h4>
+        <p><strong>Actor:</strong> Vendor</p>
+        
+        <p><strong>Main Flow:</strong></p>
+        <ol><li>Vendor logs into vendor portal</li><li>Vendor adds/edits product listings</li><li>Vendor views sales analytics dashboard</li><li>Vendor manages inventory levels</li><li>System calculates commission</li></ol>
+        
+    </div>
+    
+    <div class="card">
+        <h4>UC-003: Admin Monitors Platform</h4>
+        <p><strong>Actor:</strong> Admin</p>
+        
+        <p><strong>Main Flow:</strong></p>
+        <ol><li>Admin views real-time dashboard</li><li>Admin reviews vendor applications</li><li>Admin configures AI model parameters</li><li>Admin monitors system performance</li><li>Admin manages user accounts</li></ol>
+        
+    </div>
+    
+    <div class="card">
+        <h4>UC-004: Customer Uses Mobile App</h4>
+        <p><strong>Actor:</strong> Customer</p>
+        
+        <p><strong>Main Flow:</strong></p>
+        <ol><li>Customer opens PWA on mobile</li><li>App loads from cache if offline</li><li>Customer receives push notification for deals</li><li>Customer browses with touch-optimized UI</li><li>Customer completes purchase via mobile payment</li></ol>
+        
+    </div>
+    
+    
+
+    
+    <div class="card"><h4>AI Analysis</h4><p>7 requirements extracted covering core e-commerce, AI, inventory, multi-vendor, mobile, security, and performance needs.</p></div>
+    
+
+    <!-- TEAM -->
+    <h2 id="team">2. Team & Roles</h2>
+    
+    <table>
+        <tr><th>ID</th><th>Name</th><th>Role</th><th>Skills</th><th>Components</th></tr>
+        
+        <tr>
+            <td>TM-001</td><td>Tech Lead / Architect</td><td>architect</td>
+            <td>System Design, Python, Cloud Architecture</td><td></td>
+        </tr>
+        
+        <tr>
+            <td>TM-002</td><td>Senior Backend Developer</td><td>developer</td>
+            <td>Python, FastAPI, PostgreSQL</td><td></td>
+        </tr>
+        
+        <tr>
+            <td>TM-003</td><td>Frontend Developer</td><td>developer</td>
+            <td>React, TypeScript, PWA</td><td></td>
+        </tr>
+        
+        <tr>
+            <td>TM-004</td><td>ML/AI Engineer</td><td>developer</td>
+            <td>Python, TensorFlow, Recommendation Systems</td><td></td>
+        </tr>
+        
+        <tr>
+            <td>TM-005</td><td>DevOps Engineer</td><td>devops</td>
+            <td>Kubernetes, Terraform, CI/CD</td><td></td>
+        </tr>
+        
+        <tr>
+            <td>TM-006</td><td>QA Engineer</td><td>qa_engineer</td>
+            <td>Selenium, pytest, Load Testing</td><td></td>
+        </tr>
+        
+        <tr>
+            <td>TM-007</td><td>Product Owner</td><td>project_manager</td>
+            <td>Agile, User Stories, Stakeholder Mgmt</td><td></td>
+        </tr>
+        
+    </table>
+    
+
+    <!-- ARCHITECTURE -->
+    <h2 id="architecture">3. Architecture</h2>
+    
+    <table>
+        <tr><th>ID</th><th>Name</th><th>Type</th><th>Technology</th><th>Dependencies</th></tr>
+        
+        <tr>
+            <td>COMP-001</td><td>API Gateway</td><td>gateway</td>
+            <td>Kong / NGINX</td><td></td>
+        </tr>
+        
+        <tr>
+            <td>COMP-002</td><td>Auth Service</td><td>service</td>
+            <td>Python FastAPI + Redis</td><td>COMP-001</td>
+        </tr>
+        
+        <tr>
+            <td>COMP-003</td><td>Product Catalog Service</td><td>service</td>
+            <td>Python FastAPI + PostgreSQL + Elasticsearch</td><td>COMP-002</td>
+        </tr>
+        
+        <tr>
+            <td>COMP-004</td><td>Recommendation Engine</td><td>service</td>
+            <td>Python + TensorFlow Serving + Redis</td><td>COMP-003</td>
+        </tr>
+        
+        <tr>
+            <td>COMP-005</td><td>Inventory Service</td><td>service</td>
+            <td>Python FastAPI + PostgreSQL + WebSockets</td><td>COMP-003</td>
+        </tr>
+        
+        <tr>
+            <td>COMP-006</td><td>Order & Payment Service</td><td>service</td>
+            <td>Python FastAPI + Stripe SDK</td><td>COMP-002, COMP-005</td>
+        </tr>
+        
+        <tr>
+            <td>COMP-007</td><td>Frontend PWA</td><td>frontend</td>
+            <td>React + Next.js + TailwindCSS</td><td>COMP-001</td>
+        </tr>
+        
+        <tr>
+            <td>COMP-008</td><td>Event Bus</td><td>queue</td>
+            <td>Apache Kafka / RabbitMQ</td><td></td>
+        </tr>
+        
+    </table>
+    
+
+    
+    <h3>Tech Stack</h3>
+    <div class="card">
+    <ul><li><strong>backend:</strong> Python FastAPI</li><li><strong>cache:</strong> Redis</li><li><strong>database:</strong> PostgreSQL</li><li><strong>frontend:</strong> React + Next.js</li><li><strong>infrastructure:</strong> AWS + Kubernetes</li><li><strong>messaging:</strong> Kafka</li><li><strong>ml:</strong> TensorFlow</li><li><strong>search:</strong> Elasticsearch</li></ul>
+    </div>
+    
+
+    
+    <h3>Architecture Decision Records</h3>
+    
+    <div class="adr">
+        <h4>ADR-001: Microservices over Monolith</h4>
+        <p><strong>Context:</strong> Need independent scaling of AI, inventory, and order services</p>
+        <p><strong>Decision:</strong> Adopt microservices architecture with API gateway pattern</p>
+        <p><strong>Consequences:</strong> </p>
+    </div>
+    
+    <div class="adr">
+        <h4>ADR-002: Event-Driven Communication</h4>
+        <p><strong>Context:</strong> Services need loose coupling for inventory updates and order events</p>
+        <p><strong>Decision:</strong> Use Kafka for async event streaming between services</p>
+        <p><strong>Consequences:</strong> </p>
+    </div>
+    
+    <div class="adr">
+        <h4>ADR-003: PWA over Native Mobile Apps</h4>
+        <p><strong>Context:</strong> Budget constraints and need for cross-platform support</p>
+        <p><strong>Decision:</strong> Build as PWA with Next.js for SSR and offline capabilities</p>
+        <p><strong>Consequences:</strong> </p>
+    </div>
+    
+    
+
+    
+
+    <!-- DEVELOPMENT -->
+    <h2 id="development">4. Development</h2>
+    
+    <table>
+        <tr><th>ID</th><th>Title</th><th>Component</th><th>Priority</th><th>Hours</th><th>Status</th></tr>
+        
+        <tr>
+            <td>TASK-001</td><td>Setup API Gateway & routing</td><td>COMP-001</td>
+            <td><span class="badge badge-high">high</span></td>
+            <td>16.0</td><td>backlog</td>
+        </tr>
+        
+        <tr>
+            <td>TASK-002</td><td>Implement Auth Service (JWT + OAuth2)</td><td>COMP-002</td>
+            <td><span class="badge badge-high">high</span></td>
+            <td>32.0</td><td>backlog</td>
+        </tr>
+        
+        <tr>
+            <td>TASK-003</td><td>Build Product Catalog CRUD + Search</td><td>COMP-003</td>
+            <td><span class="badge badge-high">high</span></td>
+            <td>40.0</td><td>backlog</td>
+        </tr>
+        
+        <tr>
+            <td>TASK-004</td><td>Train & deploy recommendation model</td><td>COMP-004</td>
+            <td><span class="badge badge-medium">medium</span></td>
+            <td>60.0</td><td>backlog</td>
+        </tr>
+        
+        <tr>
+            <td>TASK-005</td><td>Implement real-time inventory tracking</td><td>COMP-005</td>
+            <td><span class="badge badge-high">high</span></td>
+            <td>32.0</td><td>backlog</td>
+        </tr>
+        
+        <tr>
+            <td>TASK-006</td><td>Build Order/Payment processing</td><td>COMP-006</td>
+            <td><span class="badge badge-high">high</span></td>
+            <td>48.0</td><td>backlog</td>
+        </tr>
+        
+        <tr>
+            <td>TASK-007</td><td>Develop Frontend PWA shell + routing</td><td>COMP-007</td>
+            <td><span class="badge badge-high">high</span></td>
+            <td>40.0</td><td>backlog</td>
+        </tr>
+        
+        <tr>
+            <td>TASK-008</td><td>Setup Kafka event bus & consumers</td><td>COMP-008</td>
+            <td><span class="badge badge-medium">medium</span></td>
+            <td>24.0</td><td>backlog</td>
+        </tr>
+        
+        <tr>
+            <td>TASK-009</td><td>E2E testing & load testing</td><td>COMP-001</td>
+            <td><span class="badge badge-medium">medium</span></td>
+            <td>32.0</td><td>backlog</td>
+        </tr>
+        
+        <tr>
+            <td>TASK-010</td><td>Vendor portal frontend</td><td>COMP-007</td>
+            <td><span class="badge badge-medium">medium</span></td>
+            <td>36.0</td><td>backlog</td>
+        </tr>
+        
+    </table>
+    
+
+    <!-- DEPLOYMENT -->
+    <h2 id="deployment">5. Deployment</h2>
+    
+    <table>
+        <tr><th>Name</th><th>Type</th><th>URL</th></tr>
+        
+        <tr><td>Development</td><td>development</td><td>https://dev.shopai.example.com</td></tr>
+        
+        <tr><td>Staging</td><td>staging</td><td>https://staging.shopai.example.com</td></tr>
+        
+        <tr><td>Production</td><td>production</td><td>https://shopai.example.com</td></tr>
+        
+    </table>
+    
+
+    
+    <h3>CI/CD Pipeline</h3>
+    <ol>
+    <li><strong>Lint & Type Check</strong> — quality</li>
+    
+    <li><strong>Unit Tests</strong> — test</li>
+    
+    <li><strong>Build Docker Images</strong> — build</li>
+    
+    <li><strong>Integration Tests</strong> — test</li>
+    
+    <li><strong>Deploy to Staging</strong> — deploy</li>
+    
+    <li><strong>Smoke Tests</strong> — test</li>
+    
+    <li><strong>Deploy to Production</strong> — deploy</li>
+    </ol>
+    
+
+    <!-- SCHEDULE -->
+    <h2 id="schedule">6. Schedule</h2>
+    
+    <table>
+        <tr><th>ID</th><th>Milestone</th><th>Target</th><th>Status</th></tr>
+        
+        <tr><td>MS-001</td><td>MVP — Core Shopping Flow</td><td>2026-06-14</td><td>not_started</td></tr>
+        
+        <tr><td>MS-002</td><td>AI & Vendor Features</td><td>2026-07-12</td><td>not_started</td></tr>
+        
+        <tr><td>MS-003</td><td>Production Launch</td><td>2026-07-26</td><td>not_started</td></tr>
+        
+    </table>
+    
+
+    
+    <h3>Sprint Plan</h3>
+    
+    <div class="card"><h4>Sprint 1: Foundation</h4>
+    <p><strong>Tasks:</strong> TASK-001, TASK-002, TASK-007</p>
+    <p><strong>Goals:</strong> API Gateway setup, Auth service MVP, Frontend shell</p></div>
+    
+    <div class="card"><h4>Sprint 2: Core Commerce</h4>
+    <p><strong>Tasks:</strong> TASK-003, TASK-005, TASK-008</p>
+    <p><strong>Goals:</strong> Product catalog, Inventory service, Event bus</p></div>
+    
+    <div class="card"><h4>Sprint 3: Payments & Vendors</h4>
+    <p><strong>Tasks:</strong> TASK-006, TASK-010</p>
+    <p><strong>Goals:</strong> Order/payment processing, Vendor portal</p></div>
+    
+    <div class="card"><h4>Sprint 4: AI & Intelligence</h4>
+    <p><strong>Tasks:</strong> TASK-004</p>
+    <p><strong>Goals:</strong> Train recommendation model, Deploy ML pipeline</p></div>
+    
+    <div class="card"><h4>Sprint 5: Polish & Testing</h4>
+    <p><strong>Tasks:</strong> TASK-009</p>
+    <p><strong>Goals:</strong> E2E testing, Load testing, Performance tuning</p></div>
+    
+    <div class="card"><h4>Sprint 6: Launch Prep</h4>
+    <p><strong>Tasks:</strong> </p>
+    <p><strong>Goals:</strong> Security audit, Production deployment, Monitoring setup</p></div>
+    
+    
+
+    
+    <p><strong>Estimated Duration:</strong> 12 weeks</p>
+    
+
+</div>
+<script>mermaid.initialize({ startOnLoad: true, theme: 'default' });</script>
+</body>
+</html>
