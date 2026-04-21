@@ -1,0 +1,55 @@
+graph TB
+    subgraph CLIENT["Client Layer"]
+        PWA["Frontend PWA\nReact + Next.js"]
+        MOBILE["Mobile Browser\nPWA + Push"]
+    end
+
+    subgraph GATEWAY["API Gateway Layer"]
+        GW["API Gateway\nKong / NGINX\nRate Limiting + Auth"]
+    end
+
+    subgraph SERVICES["Microservices Layer"]
+        AUTH["Auth Service\nFastAPI + Redis\nJWT + OAuth2"]
+        CATALOG["Product Catalog\nFastAPI + PostgreSQL\n+ Elasticsearch"]
+        INVENTORY["Inventory Service\nFastAPI + PostgreSQL\nWebSocket Updates"]
+        ORDERS["Order & Payment\nFastAPI + Stripe SDK"]
+        RECO["Recommendation Engine\nTensorFlow Serving\n+ Redis Cache"]
+    end
+
+    subgraph MESSAGING["Event Layer"]
+        KAFKA["Event Bus\nApache Kafka"]
+    end
+
+    subgraph DATA["Data Layer"]
+        PG[("PostgreSQL\nPrimary DB")]
+        REDIS[("Redis\nCache + Sessions")]
+        ES[("Elasticsearch\nProduct Search")]
+    end
+
+    PWA --> GW
+    MOBILE --> GW
+    GW --> AUTH
+    GW --> CATALOG
+    GW --> INVENTORY
+    GW --> ORDERS
+    GW --> RECO
+
+    AUTH --> REDIS
+    CATALOG --> PG
+    CATALOG --> ES
+    INVENTORY --> PG
+    INVENTORY --> KAFKA
+    ORDERS --> PG
+    ORDERS --> KAFKA
+    RECO --> REDIS
+    RECO --> CATALOG
+
+    KAFKA --> INVENTORY
+    KAFKA --> ORDERS
+    KAFKA --> RECO
+
+    style CLIENT fill:#E8F4FD,stroke:#7FB3D3,stroke-width:2px
+    style GATEWAY fill:#FFF8E7,stroke:#E6C97A,stroke-width:2px
+    style SERVICES fill:#F0FFF0,stroke:#90C695,stroke-width:2px
+    style MESSAGING fill:#F5F0FF,stroke:#B0A0D4,stroke-width:2px
+    style DATA fill:#FFFAF0,stroke:#D4B896,stroke-width:2px

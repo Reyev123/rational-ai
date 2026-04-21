@@ -75,7 +75,124 @@ architecture:
     id: ADR-003
     status: accepted
     title: PWA over Native Mobile Apps
-  diagrams: []
+  diagrams:
+  - description: High-level component diagram showing all ShopAI microservices and
+      their interactions
+    id: DIA-001
+    mermaid_code: "graph TB\n    subgraph CLIENT[\"Client Layer\"]\n        PWA[\"\
+      Frontend PWA\\nReact + Next.js\"]\n        MOBILE[\"Mobile Browser\\nPWA + Push\"\
+      ]\n    end\n\n    subgraph GATEWAY[\"API Gateway Layer\"]\n        GW[\"API\
+      \ Gateway\\nKong / NGINX\\nRate Limiting + Auth\"]\n    end\n\n    subgraph\
+      \ SERVICES[\"Microservices Layer\"]\n        AUTH[\"Auth Service\\nFastAPI +\
+      \ Redis\\nJWT + OAuth2\"]\n        CATALOG[\"Product Catalog\\nFastAPI + PostgreSQL\\\
+      n+ Elasticsearch\"]\n        INVENTORY[\"Inventory Service\\nFastAPI + PostgreSQL\\\
+      nWebSocket Updates\"]\n        ORDERS[\"Order & Payment\\nFastAPI + Stripe SDK\"\
+      ]\n        RECO[\"Recommendation Engine\\nTensorFlow Serving\\n+ Redis Cache\"\
+      ]\n    end\n\n    subgraph MESSAGING[\"Event Layer\"]\n        KAFKA[\"Event\
+      \ Bus\\nApache Kafka\"]\n    end\n\n    subgraph DATA[\"Data Layer\"]\n    \
+      \    PG[(\"PostgreSQL\\nPrimary DB\")]\n        REDIS[(\"Redis\\nCache + Sessions\"\
+      )]\n        ES[(\"Elasticsearch\\nProduct Search\")]\n    end\n\n    PWA -->\
+      \ GW\n    MOBILE --> GW\n    GW --> AUTH\n    GW --> CATALOG\n    GW --> INVENTORY\n\
+      \    GW --> ORDERS\n    GW --> RECO\n\n    AUTH --> REDIS\n    CATALOG --> PG\n\
+      \    CATALOG --> ES\n    INVENTORY --> PG\n    INVENTORY --> KAFKA\n    ORDERS\
+      \ --> PG\n    ORDERS --> KAFKA\n    RECO --> REDIS\n    RECO --> CATALOG\n\n\
+      \    KAFKA --> INVENTORY\n    KAFKA --> ORDERS\n    KAFKA --> RECO\n\n    style\
+      \ CLIENT fill:#E8F4FD,stroke:#7FB3D3,stroke-width:2px\n    style GATEWAY fill:#FFF8E7,stroke:#E6C97A,stroke-width:2px\n\
+      \    style SERVICES fill:#F0FFF0,stroke:#90C695,stroke-width:2px\n    style\
+      \ MESSAGING fill:#F5F0FF,stroke:#B0A0D4,stroke-width:2px\n    style DATA fill:#FFFAF0,stroke:#D4B896,stroke-width:2px"
+    title: System Architecture - Microservices Overview
+    type: component
+  - description: Customer purchase flow showing inter-service communication
+    id: DIA-002
+    mermaid_code: "sequenceDiagram\n    participant C as Customer\n    participant\
+      \ GW as API Gateway\n    participant AUTH as Auth Service\n    participant CAT\
+      \ as Product Catalog\n    participant RECO as Recommendation\n    participant\
+      \ INV as Inventory\n    participant ORD as Order Service\n    participant PAY\
+      \ as Stripe\n    participant K as Kafka\n\n    C->>GW: Browse products\n   \
+      \ GW->>AUTH: Validate JWT\n    AUTH-->>GW: Token valid\n    GW->>CAT: GET /products\n\
+      \    CAT-->>GW: Product list\n    GW->>RECO: GET /recommendations\n    RECO-->>GW:\
+      \ Personalized picks\n    GW-->>C: Products + Recommendations\n\n    C->>GW:\
+      \ POST /orders (checkout)\n    GW->>INV: Check stock\n    INV-->>GW: Stock confirmed\n\
+      \    GW->>ORD: Create order\n    ORD->>PAY: Charge payment\n    PAY-->>ORD:\
+      \ Payment success\n    ORD->>K: OrderCreated event\n    K->>INV: Update stock\n\
+      \    K->>RECO: Update user history\n    ORD-->>GW: Order confirmed\n    GW-->>C:\
+      \ Order confirmed"
+    title: Service Communication - Purchase Flow
+    type: sequence
+  - description: AWS + Kubernetes deployment topology for production environment
+    id: DIA-003
+    mermaid_code: "graph TB\n    subgraph AWS[\"AWS Cloud\"]\n        subgraph EKS[\"\
+      EKS Kubernetes Cluster\"]\n            subgraph NS_APP[\"namespace: shopai\"\
+      ]\n                GW_POD[\"API Gateway\\n3 replicas\"]\n                AUTH_POD[\"\
+      Auth Service\\n2 replicas\"]\n                CAT_POD[\"Catalog Service\\n3\
+      \ replicas\"]\n                INV_POD[\"Inventory Service\\n2 replicas\"]\n\
+      \                ORD_POD[\"Order Service\\n3 replicas\"]\n                RECO_POD[\"\
+      Recommendation\\n2 replicas + GPU\"]\n            end\n            subgraph\
+      \ NS_DATA[\"namespace: data\"]\n                KAFKA_POD[\"Kafka Cluster\\\
+      n3 brokers\"]\n                REDIS_POD[\"Redis Cluster\\n3 nodes\"]\n    \
+      \        end\n        end\n\n        subgraph MANAGED[\"Managed Services\"]\n\
+      \            RDS[(\"RDS PostgreSQL\\nMulti-AZ\")]\n            ESVC[(\"OpenSearch\\\
+      n3 nodes\")]\n            S3[(\"S3\\nStatic Assets\")]\n            CF[\"CloudFront\
+      \ CDN\"]\n        end\n\n        ALB[\"Application\\nLoad Balancer\"]\n    end\n\
+      \n    USERS[\"Users\"] --> CF\n    CF --> ALB\n    ALB --> GW_POD\n    GW_POD\
+      \ --> AUTH_POD\n    GW_POD --> CAT_POD\n    GW_POD --> INV_POD\n    GW_POD -->\
+      \ ORD_POD\n    GW_POD --> RECO_POD\n    CAT_POD --> RDS\n    INV_POD --> RDS\n\
+      \    ORD_POD --> RDS\n    CAT_POD --> ESVC\n    AUTH_POD --> REDIS_POD\n   \
+      \ RECO_POD --> REDIS_POD\n    INV_POD --> KAFKA_POD\n    ORD_POD --> KAFKA_POD\n\
+      \    CF --> S3\n\n    style AWS fill:#FFF8E7,stroke:#E6C97A,stroke-width:2px\n\
+      \    style EKS fill:#E8F4FD,stroke:#7FB3D3,stroke-width:2px\n    style NS_APP\
+      \ fill:#F0FFF0,stroke:#90C695,stroke-width:1px\n    style NS_DATA fill:#F5F0FF,stroke:#B0A0D4,stroke-width:1px\n\
+      \    style MANAGED fill:#FFFAF0,stroke:#D4B896,stroke-width:1px"
+    title: Deployment Architecture - AWS EKS
+    type: deployment
+  - description: Kafka event flow between services for eventual consistency
+    id: DIA-004
+    mermaid_code: "flowchart LR\n    subgraph PRODUCERS[\"Event Producers\"]\n   \
+      \     ORD[\"Order Service\"]\n        INV[\"Inventory Service\"]\n        CAT[\"\
+      Catalog Service\"]\n    end\n\n    subgraph KAFKA[\"Kafka Topics\"]\n      \
+      \  T1[\"orders.created\"]\n        T2[\"orders.completed\"]\n        T3[\"inventory.updated\"\
+      ]\n        T4[\"products.changed\"]\n    end\n\n    subgraph CONSUMERS[\"Event\
+      \ Consumers\"]\n        INV2[\"Inventory\\nStock Deduction\"]\n        RECO[\"\
+      Recommendation\\nModel Update\"]\n        NOTIFY[\"Notification\\nEmail + Push\"\
+      ]\n        ANALYTICS[\"Analytics\\nDashboard\"]\n    end\n\n    ORD -->|order\
+      \ placed| T1\n    ORD -->|payment confirmed| T2\n    INV -->|stock changed|\
+      \ T3\n    CAT -->|product updated| T4\n\n    T1 --> INV2\n    T1 --> NOTIFY\n\
+      \    T2 --> ANALYTICS\n    T3 --> RECO\n    T3 --> ANALYTICS\n    T4 --> RECO\n\
+      \n    style PRODUCERS fill:#E8F4FD,stroke:#7FB3D3,stroke-width:2px\n    style\
+      \ KAFKA fill:#F5F0FF,stroke:#B0A0D4,stroke-width:2px\n    style CONSUMERS fill:#F0FFF0,stroke:#90C695,stroke-width:2px"
+    title: Event-Driven Data Flow
+    type: flowchart
+  - description: Core database entities and relationships for ShopAI
+    id: DIA-005
+    mermaid_code: "erDiagram\n    USER ||--o{ ORDER : places\n    USER ||--o{ REVIEW\
+      \ : writes\n    USER ||--o{ CART : has\n    USER {\n        uuid id PK\n   \
+      \     string email\n        string password_hash\n        string name\n    \
+      \    string oauth_provider\n        datetime created_at\n    }\n\n    VENDOR\
+      \ ||--o{ PRODUCT : sells\n    VENDOR ||--o{ STOREFRONT : manages\n    VENDOR\
+      \ {\n        uuid id PK\n        string company_name\n        string contact_email\n\
+      \        float commission_rate\n        string status\n    }\n\n    PRODUCT\
+      \ ||--o{ ORDER_ITEM : contains\n    PRODUCT ||--o{ INVENTORY : tracked_in\n\
+      \    PRODUCT ||--o{ REVIEW : receives\n    PRODUCT {\n        uuid id PK\n \
+      \       string title\n        text description\n        decimal price\n    \
+      \    string category\n        uuid vendor_id FK\n    }\n\n    ORDER ||--|{ ORDER_ITEM\
+      \ : includes\n    ORDER ||--o| PAYMENT : paid_by\n    ORDER {\n        uuid\
+      \ id PK\n        uuid user_id FK\n        decimal total\n        string status\n\
+      \        datetime created_at\n    }\n\n    ORDER_ITEM {\n        uuid id PK\n\
+      \        uuid order_id FK\n        uuid product_id FK\n        int quantity\n\
+      \        decimal unit_price\n    }\n\n    PAYMENT {\n        uuid id PK\n  \
+      \      uuid order_id FK\n        string stripe_id\n        decimal amount\n\
+      \        string status\n    }\n\n    INVENTORY {\n        uuid id PK\n     \
+      \   uuid product_id FK\n        string warehouse\n        int quantity\n   \
+      \     int reserved\n    }\n\n    CART ||--|{ CART_ITEM : contains\n    CART\
+      \ {\n        uuid id PK\n        uuid user_id FK\n    }\n\n    CART_ITEM {\n\
+      \        uuid id PK\n        uuid cart_id FK\n        uuid product_id FK\n \
+      \       int quantity\n    }\n\n    REVIEW {\n        uuid id PK\n        uuid\
+      \ user_id FK\n        uuid product_id FK\n        int rating\n        text comment\n\
+      \    }\n\n    STOREFRONT {\n        uuid id PK\n        uuid vendor_id FK\n\
+      \        string name\n        string theme\n        string custom_domain\n \
+      \   }"
+    title: Database Schema - Entity Relationship
+    type: er
   status: completed
   tech_stack:
     backend: Python FastAPI

@@ -1,0 +1,31 @@
+sequenceDiagram
+    participant C as Customer
+    participant GW as API Gateway
+    participant AUTH as Auth Service
+    participant CAT as Product Catalog
+    participant RECO as Recommendation
+    participant INV as Inventory
+    participant ORD as Order Service
+    participant PAY as Stripe
+    participant K as Kafka
+
+    C->>GW: Browse products
+    GW->>AUTH: Validate JWT
+    AUTH-->>GW: Token valid
+    GW->>CAT: GET /products
+    CAT-->>GW: Product list
+    GW->>RECO: GET /recommendations
+    RECO-->>GW: Personalized picks
+    GW-->>C: Products + Recommendations
+
+    C->>GW: POST /orders (checkout)
+    GW->>INV: Check stock
+    INV-->>GW: Stock confirmed
+    GW->>ORD: Create order
+    ORD->>PAY: Charge payment
+    PAY-->>ORD: Payment success
+    ORD->>K: OrderCreated event
+    K->>INV: Update stock
+    K->>RECO: Update user history
+    ORD-->>GW: Order confirmed
+    GW-->>C: Order confirmed

@@ -1,0 +1,36 @@
+flowchart LR
+    subgraph PRODUCERS["Event Producers"]
+        ORD["Order Service"]
+        INV["Inventory Service"]
+        CAT["Catalog Service"]
+    end
+
+    subgraph KAFKA["Kafka Topics"]
+        T1["orders.created"]
+        T2["orders.completed"]
+        T3["inventory.updated"]
+        T4["products.changed"]
+    end
+
+    subgraph CONSUMERS["Event Consumers"]
+        INV2["Inventory\nStock Deduction"]
+        RECO["Recommendation\nModel Update"]
+        NOTIFY["Notification\nEmail + Push"]
+        ANALYTICS["Analytics\nDashboard"]
+    end
+
+    ORD -->|order placed| T1
+    ORD -->|payment confirmed| T2
+    INV -->|stock changed| T3
+    CAT -->|product updated| T4
+
+    T1 --> INV2
+    T1 --> NOTIFY
+    T2 --> ANALYTICS
+    T3 --> RECO
+    T3 --> ANALYTICS
+    T4 --> RECO
+
+    style PRODUCERS fill:#E8F4FD,stroke:#7FB3D3,stroke-width:2px
+    style KAFKA fill:#F5F0FF,stroke:#B0A0D4,stroke-width:2px
+    style CONSUMERS fill:#F0FFF0,stroke:#90C695,stroke-width:2px

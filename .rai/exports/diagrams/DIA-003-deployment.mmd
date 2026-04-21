@@ -1,0 +1,50 @@
+graph TB
+    subgraph AWS["AWS Cloud"]
+        subgraph EKS["EKS Kubernetes Cluster"]
+            subgraph NS_APP["namespace: shopai"]
+                GW_POD["API Gateway\n3 replicas"]
+                AUTH_POD["Auth Service\n2 replicas"]
+                CAT_POD["Catalog Service\n3 replicas"]
+                INV_POD["Inventory Service\n2 replicas"]
+                ORD_POD["Order Service\n3 replicas"]
+                RECO_POD["Recommendation\n2 replicas + GPU"]
+            end
+            subgraph NS_DATA["namespace: data"]
+                KAFKA_POD["Kafka Cluster\n3 brokers"]
+                REDIS_POD["Redis Cluster\n3 nodes"]
+            end
+        end
+
+        subgraph MANAGED["Managed Services"]
+            RDS[("RDS PostgreSQL\nMulti-AZ")]
+            ESVC[("OpenSearch\n3 nodes")]
+            S3[("S3\nStatic Assets")]
+            CF["CloudFront CDN"]
+        end
+
+        ALB["Application\nLoad Balancer"]
+    end
+
+    USERS["Users"] --> CF
+    CF --> ALB
+    ALB --> GW_POD
+    GW_POD --> AUTH_POD
+    GW_POD --> CAT_POD
+    GW_POD --> INV_POD
+    GW_POD --> ORD_POD
+    GW_POD --> RECO_POD
+    CAT_POD --> RDS
+    INV_POD --> RDS
+    ORD_POD --> RDS
+    CAT_POD --> ESVC
+    AUTH_POD --> REDIS_POD
+    RECO_POD --> REDIS_POD
+    INV_POD --> KAFKA_POD
+    ORD_POD --> KAFKA_POD
+    CF --> S3
+
+    style AWS fill:#FFF8E7,stroke:#E6C97A,stroke-width:2px
+    style EKS fill:#E8F4FD,stroke:#7FB3D3,stroke-width:2px
+    style NS_APP fill:#F0FFF0,stroke:#90C695,stroke-width:1px
+    style NS_DATA fill:#F5F0FF,stroke:#B0A0D4,stroke-width:1px
+    style MANAGED fill:#FFFAF0,stroke:#D4B896,stroke-width:1px

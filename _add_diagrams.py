@@ -1,48 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Architecture Diagrams</title>
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <style>
-        body { font-family: system-ui, sans-serif; max-width: 1200px; margin: 0 auto; padding: 2rem; }
-        .diagram { margin: 2rem 0; padding: 1rem; border: 1px solid #e0e0e0; border-radius: 8px; }
-        h3 { color: #1a73e8; }
-    </style>
-</head>
-<body>
-    <h1>Architecture Diagrams</h1>
-    
-        <div class="diagram">
-            <h3>DIA-001: System Architecture - Microservices Overview</h3>
-            <p>High-level component diagram showing all ShopAI microservices and their interactions</p>
-            <div class="mermaid">
-graph TB
+"""Add architecture diagrams to the ShopAI project."""
+import yaml, os
+
+os.chdir(r"c:\Users\Reyev\Documents\_hackathon\rational-ai")
+
+p = yaml.safe_load(open(".rai/project.yaml", encoding="utf-8"))
+
+diagrams = [
+    {
+        "id": "DIA-001",
+        "title": "System Architecture - Microservices Overview",
+        "type": "component",
+        "description": "High-level component diagram showing all ShopAI microservices and their interactions",
+        "mermaid_code": """graph TB
     subgraph CLIENT["Client Layer"]
-        PWA["Frontend PWA\nReact + Next.js"]
-        MOBILE["Mobile Browser\nPWA + Push"]
+        PWA["Frontend PWA\\nReact + Next.js"]
+        MOBILE["Mobile Browser\\nPWA + Push"]
     end
 
     subgraph GATEWAY["API Gateway Layer"]
-        GW["API Gateway\nKong / NGINX\nRate Limiting + Auth"]
+        GW["API Gateway\\nKong / NGINX\\nRate Limiting + Auth"]
     end
 
     subgraph SERVICES["Microservices Layer"]
-        AUTH["Auth Service\nFastAPI + Redis\nJWT + OAuth2"]
-        CATALOG["Product Catalog\nFastAPI + PostgreSQL\n+ Elasticsearch"]
-        INVENTORY["Inventory Service\nFastAPI + PostgreSQL\nWebSocket Updates"]
-        ORDERS["Order & Payment\nFastAPI + Stripe SDK"]
-        RECO["Recommendation Engine\nTensorFlow Serving\n+ Redis Cache"]
+        AUTH["Auth Service\\nFastAPI + Redis\\nJWT + OAuth2"]
+        CATALOG["Product Catalog\\nFastAPI + PostgreSQL\\n+ Elasticsearch"]
+        INVENTORY["Inventory Service\\nFastAPI + PostgreSQL\\nWebSocket Updates"]
+        ORDERS["Order & Payment\\nFastAPI + Stripe SDK"]
+        RECO["Recommendation Engine\\nTensorFlow Serving\\n+ Redis Cache"]
     end
 
     subgraph MESSAGING["Event Layer"]
-        KAFKA["Event Bus\nApache Kafka"]
+        KAFKA["Event Bus\\nApache Kafka"]
     end
 
     subgraph DATA["Data Layer"]
-        PG[("PostgreSQL\nPrimary DB")]
-        REDIS[("Redis\nCache + Sessions")]
-        ES[("Elasticsearch\nProduct Search")]
+        PG[("PostgreSQL\\nPrimary DB")]
+        REDIS[("Redis\\nCache + Sessions")]
+        ES[("Elasticsearch\\nProduct Search")]
     end
 
     PWA --> GW
@@ -71,15 +65,14 @@ graph TB
     style GATEWAY fill:#FFF8E7,stroke:#E6C97A,stroke-width:2px
     style SERVICES fill:#F0FFF0,stroke:#90C695,stroke-width:2px
     style MESSAGING fill:#F5F0FF,stroke:#B0A0D4,stroke-width:2px
-    style DATA fill:#FFFAF0,stroke:#D4B896,stroke-width:2px
-            </div>
-        </div>
-        
-        <div class="diagram">
-            <h3>DIA-002: Service Communication - Purchase Flow</h3>
-            <p>Customer purchase flow showing inter-service communication</p>
-            <div class="mermaid">
-sequenceDiagram
+    style DATA fill:#FFFAF0,stroke:#D4B896,stroke-width:2px""",
+    },
+    {
+        "id": "DIA-002",
+        "title": "Service Communication - Purchase Flow",
+        "type": "sequence",
+        "description": "Customer purchase flow showing inter-service communication",
+        "mermaid_code": """sequenceDiagram
     participant C as Customer
     participant GW as API Gateway
     participant AUTH as Auth Service
@@ -109,39 +102,38 @@ sequenceDiagram
     K->>INV: Update stock
     K->>RECO: Update user history
     ORD-->>GW: Order confirmed
-    GW-->>C: Order confirmed
-            </div>
-        </div>
-        
-        <div class="diagram">
-            <h3>DIA-003: Deployment Architecture - AWS EKS</h3>
-            <p>AWS + Kubernetes deployment topology for production environment</p>
-            <div class="mermaid">
-graph TB
+    GW-->>C: Order confirmed""",
+    },
+    {
+        "id": "DIA-003",
+        "title": "Deployment Architecture - AWS EKS",
+        "type": "deployment",
+        "description": "AWS + Kubernetes deployment topology for production environment",
+        "mermaid_code": """graph TB
     subgraph AWS["AWS Cloud"]
         subgraph EKS["EKS Kubernetes Cluster"]
             subgraph NS_APP["namespace: shopai"]
-                GW_POD["API Gateway\n3 replicas"]
-                AUTH_POD["Auth Service\n2 replicas"]
-                CAT_POD["Catalog Service\n3 replicas"]
-                INV_POD["Inventory Service\n2 replicas"]
-                ORD_POD["Order Service\n3 replicas"]
-                RECO_POD["Recommendation\n2 replicas + GPU"]
+                GW_POD["API Gateway\\n3 replicas"]
+                AUTH_POD["Auth Service\\n2 replicas"]
+                CAT_POD["Catalog Service\\n3 replicas"]
+                INV_POD["Inventory Service\\n2 replicas"]
+                ORD_POD["Order Service\\n3 replicas"]
+                RECO_POD["Recommendation\\n2 replicas + GPU"]
             end
             subgraph NS_DATA["namespace: data"]
-                KAFKA_POD["Kafka Cluster\n3 brokers"]
-                REDIS_POD["Redis Cluster\n3 nodes"]
+                KAFKA_POD["Kafka Cluster\\n3 brokers"]
+                REDIS_POD["Redis Cluster\\n3 nodes"]
             end
         end
 
         subgraph MANAGED["Managed Services"]
-            RDS[("RDS PostgreSQL\nMulti-AZ")]
-            ESVC[("OpenSearch\n3 nodes")]
-            S3[("S3\nStatic Assets")]
+            RDS[("RDS PostgreSQL\\nMulti-AZ")]
+            ESVC[("OpenSearch\\n3 nodes")]
+            S3[("S3\\nStatic Assets")]
             CF["CloudFront CDN"]
         end
 
-        ALB["Application\nLoad Balancer"]
+        ALB["Application\\nLoad Balancer"]
     end
 
     USERS["Users"] --> CF
@@ -166,15 +158,14 @@ graph TB
     style EKS fill:#E8F4FD,stroke:#7FB3D3,stroke-width:2px
     style NS_APP fill:#F0FFF0,stroke:#90C695,stroke-width:1px
     style NS_DATA fill:#F5F0FF,stroke:#B0A0D4,stroke-width:1px
-    style MANAGED fill:#FFFAF0,stroke:#D4B896,stroke-width:1px
-            </div>
-        </div>
-        
-        <div class="diagram">
-            <h3>DIA-004: Event-Driven Data Flow</h3>
-            <p>Kafka event flow between services for eventual consistency</p>
-            <div class="mermaid">
-flowchart LR
+    style MANAGED fill:#FFFAF0,stroke:#D4B896,stroke-width:1px""",
+    },
+    {
+        "id": "DIA-004",
+        "title": "Event-Driven Data Flow",
+        "type": "flowchart",
+        "description": "Kafka event flow between services for eventual consistency",
+        "mermaid_code": """flowchart LR
     subgraph PRODUCERS["Event Producers"]
         ORD["Order Service"]
         INV["Inventory Service"]
@@ -189,10 +180,10 @@ flowchart LR
     end
 
     subgraph CONSUMERS["Event Consumers"]
-        INV2["Inventory\nStock Deduction"]
-        RECO["Recommendation\nModel Update"]
-        NOTIFY["Notification\nEmail + Push"]
-        ANALYTICS["Analytics\nDashboard"]
+        INV2["Inventory\\nStock Deduction"]
+        RECO["Recommendation\\nModel Update"]
+        NOTIFY["Notification\\nEmail + Push"]
+        ANALYTICS["Analytics\\nDashboard"]
     end
 
     ORD -->|order placed| T1
@@ -209,15 +200,14 @@ flowchart LR
 
     style PRODUCERS fill:#E8F4FD,stroke:#7FB3D3,stroke-width:2px
     style KAFKA fill:#F5F0FF,stroke:#B0A0D4,stroke-width:2px
-    style CONSUMERS fill:#F0FFF0,stroke:#90C695,stroke-width:2px
-            </div>
-        </div>
-        
-        <div class="diagram">
-            <h3>DIA-005: Database Schema - Entity Relationship</h3>
-            <p>Core database entities and relationships for ShopAI</p>
-            <div class="mermaid">
-erDiagram
+    style CONSUMERS fill:#F0FFF0,stroke:#90C695,stroke-width:2px""",
+    },
+    {
+        "id": "DIA-005",
+        "title": "Database Schema - Entity Relationship",
+        "type": "er",
+        "description": "Core database entities and relationships for ShopAI",
+        "mermaid_code": """erDiagram
     USER ||--o{ ORDER : places
     USER ||--o{ REVIEW : writes
     USER ||--o{ CART : has
@@ -313,10 +303,13 @@ erDiagram
         string name
         string theme
         string custom_domain
-    }
-            </div>
-        </div>
-        
-    <script>mermaid.initialize({ startOnLoad: true, theme: 'default' });</script>
-</body>
-</html>
+    }""",
+    },
+]
+
+p["architecture"]["diagrams"] = diagrams
+
+with open(".rai/project.yaml", "w", encoding="utf-8") as f:
+    yaml.dump(p, f, default_flow_style=False, allow_unicode=True, sort_keys=True)
+
+print(f"Added {len(diagrams)} architecture diagrams to project.yaml")
