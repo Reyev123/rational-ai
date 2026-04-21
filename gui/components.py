@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dash import html
+from dash import dcc, html
 
 from gui.theme import (
     BADGE_BASE, CARD_STYLE, COLORS, LABEL_STYLE, PAGE_TITLE_STYLE,
@@ -111,24 +111,30 @@ def form_label(text: str) -> html.Label:
 
 
 def log_panel(log_id: str = "run-log") -> html.Div:
-    """Terminal-like log output panel."""
+    """Terminal-like log output panel with loading spinner."""
+    pre = html.Pre(
+        "",
+        id=log_id,
+        style={
+            "background": "#1E1E2E",
+            "color": "#CDD6F4",
+            "padding": "16px",
+            "borderRadius": "8px",
+            "fontSize": "12px",
+            "fontFamily": "'Cascadia Code', 'Fira Code', 'Consolas', monospace",
+            "minHeight": "200px",
+            "maxHeight": "400px",
+            "overflow": "auto",
+            "whiteSpace": "pre-wrap",
+            "margin": "0",
+            "lineHeight": "1.5",
+        },
+    )
     return html.Div(
-        html.Pre(
-            "Ready. Click a phase button or 'Run All' to start.\n",
-            id=log_id,
-            style={
-                "background": "#1E1E2E",
-                "color": "#CDD6F4",
-                "padding": "16px",
-                "borderRadius": "8px",
-                "fontSize": "12px",
-                "fontFamily": "'Cascadia Code', 'Fira Code', 'Consolas', monospace",
-                "minHeight": "200px",
-                "maxHeight": "400px",
-                "overflow": "auto",
-                "whiteSpace": "pre-wrap",
-                "margin": "0",
-                "lineHeight": "1.5",
-            },
+        dcc.Loading(
+            pre,
+            type="dot",
+            color="#89B4FA",
+            style={"minHeight": "200px"},
         ),
     )

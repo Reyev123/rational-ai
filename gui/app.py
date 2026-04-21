@@ -17,9 +17,9 @@ from __future__ import annotations
 
 import argparse
 import io
+import os
 import sys
 import traceback
-from contextlib import redirect_stdout, redirect_stderr
 from pathlib import Path
 
 import yaml
@@ -111,6 +111,7 @@ def create_app(project_dir: Path) -> Dash:
         dcc.Store(id="store-project-dir", data=str(project_dir)),
         dcc.Store(id="store-project-data", data=None),
         dcc.Store(id="store-refresh", data=0),
+        dcc.Store(id="store-run-log", data="Ready. Click a phase button or 'Run All' to start.\n"),
 
         # Layout
         _sidebar(),
@@ -238,7 +239,6 @@ def _register_callbacks(app: Dash, initial_project_dir: Path):
         if not n_clicks or not name:
             return no_update, html.Span("Please enter a project name.", style={"color": COLORS["danger"]})
         try:
-            import os
             os.chdir(proj_dir)
             from rational_ai.config import load_config, save_config
             from rational_ai.project import ProjectOrchestrator
@@ -268,7 +268,6 @@ def _register_callbacks(app: Dash, initial_project_dir: Path):
         if not n:
             return no_update, no_update
         try:
-            import os
             os.chdir(proj_dir)
             from rational_ai.config import load_config, save_config
             cfg = load_config(Path(proj_dir))
@@ -288,7 +287,8 @@ def _register_callbacks(app: Dash, initial_project_dir: Path):
     # ── Run phases ──
 
     @app.callback(
-        Output("run-log", "children"),
+        Output("run-log", "children", allow_duplicate=True),
+        Output("store-run-log", "data"),
         Output("store-refresh", "data", allow_duplicate=True),
         Input("btn-run-requirements", "n_clicks"),
         Input("btn-run-roles", "n_clicks"),
@@ -307,25 +307,38 @@ def _register_callbacks(app: Dash, initial_project_dir: Path):
                   extra_desc, notes, proj_dir, prev_refresh):
         ctx = callback_context
         if not ctx.triggered_id:
-            return no_update, no_update
+            return no_update, no_update, no_update
         btn_id = ctx.triggered_id
 
-        import os
         os.chdir(proj_dir)
-
-        # Set env var for API key if present
-        cfg_path = Path(proj_dir) / ".rai" / "config.yaml"
-        if cfg_path.exists():
-            cfg_data = yaml.safe_load(cfg_path.read_text(encoding="utf-8")) or {}
-            ai_cfg = cfg_data.get("ai", {})
-            if ai_cfg.get("base_url"):
-                # Ensure base_url is available
-                pass
 
         from rational_ai.config import load_config
         from rational_ai.project import ProjectOrchestrator
+        from rational_ai.phases import (
+            requirements as req_mod,
+            roles as roles_mod,
+            architecture as arch_mod,
+            development as dev_mod,
+            deployment as dep_mod,
+            scheduling as sched_mod,
+        )
+        from rational_ai import project as project_mod
 
+        # Capture Rich output: Rich Console objects cache their file handle
+        # at creation time, so redirect_stdout won't catch them.
+        # Monkey-patch every module's console.file to our buffer instead.
         buf = io.StringIO()
+        all_consoles = []
+        for mod in [project_mod, req_mod, roles_mod, arch_mod, dev_mod, dep_mod, sched_mod]:
+            c = getattr(mod, "console", None)
+            if c is not None:
+                all_consoles.append((c, c.file))
+                c.file = buf    # redirect Rich output into buffer
+
+        old_stdout, old_stderr = sys.stdout, sys.stderr
+        sys.stdout = buf
+        sys.stderr = buf
+
         try:
             cfg = load_config(Path(proj_dir))
             orch = ProjectOrchestrator(cfg)
@@ -334,21 +347,20 @@ def _register_callbacks(app: Dash, initial_project_dir: Path):
             desc = extra_desc or ""
             sn = notes or ""
 
-            with redirect_stdout(buf), redirect_stderr(buf):
-                if btn_id == "btn-run-requirements":
-                    orch.run_requirements(desc, sn)
-                elif btn_id == "btn-run-roles":
-                    orch.run_roles()
-                elif btn_id == "btn-run-architecture":
-                    orch.run_architecture()
-                elif btn_id == "btn-run-development":
-                    orch.run_development()
-                elif btn_id == "btn-run-deployment":
-                    orch.run_deployment()
-                elif btn_id == "btn-run-schedule":
-                    orch.run_schedule()
-                elif btn_id == "btn-run-all":
-                    orch.run_all(desc, sn)
+            if btn_id == "btn-run-requirements":
+                orch.run_requirements(desc, sn)
+            elif btn_id == "btn-run-roles":
+                orch.run_roles()
+            elif btn_id == "btn-run-architecture":
+                orch.run_architecture()
+            elif btn_id == "btn-run-development":
+                orch.run_development()
+            elif btn_id == "btn-run-deployment":
+                orch.run_deployment()
+            elif btn_id == "btn-run-schedule":
+                orch.run_schedule()
+            elif btn_id == "btn-run-all":
+                orch.run_all(desc, sn)
 
             phase_name = btn_id.replace("btn-run-", "").replace("-", " ").title()
             output = buf.getvalue()
@@ -356,7 +368,7 @@ def _register_callbacks(app: Dash, initial_project_dir: Path):
             if output.strip():
                 log += output + "\n"
             log += f"\n✓ {phase_name} completed successfully!\n"
-            return log, (prev_refresh or 0) + 1
+            return log, log, (prev_refresh or 0) + 1
         except Exception as e:
             output = buf.getvalue()
             tb = traceback.format_exc()
@@ -364,7 +376,23 @@ def _register_callbacks(app: Dash, initial_project_dir: Path):
             if output.strip():
                 log += output + "\n\n"
             log += f"{tb}\n"
-            return log, no_update
+            return log, log, no_update
+        finally:
+            # Restore all consoles and stdout/stderr
+            sys.stdout = old_stdout
+            sys.stderr = old_stderr
+            for c, original_file in all_consoles:
+                c.file = original_file
+
+    # ── Sync log store → Pre element ──
+
+    @app.callback(
+        Output("run-log", "children", allow_duplicate=True),
+        Input("store-run-log", "data"),
+        prevent_initial_call=True,
+    )
+    def sync_log(log_text):
+        return log_text or "Ready.\n"
 
     # ── Export ──
 
@@ -384,7 +412,6 @@ def _register_callbacks(app: Dash, initial_project_dir: Path):
             return no_update
         btn = ctx.triggered_id
 
-        import os
         os.chdir(proj_dir)
 
         from rational_ai.config import load_config

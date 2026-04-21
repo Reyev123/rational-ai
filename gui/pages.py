@@ -6,6 +6,8 @@ Pages that are interactive rely on callbacks registered in app.py.
 
 from __future__ import annotations
 
+from pathlib import Path
+
 from dash import dcc, html
 
 from gui.theme import (
